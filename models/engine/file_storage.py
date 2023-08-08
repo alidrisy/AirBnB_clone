@@ -21,17 +21,23 @@ class FileStorage:
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         key =str(obj.__class__.__name__)+"."+str(obj.id)
-        self.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj
 
     def save(self):
         """serializes __objects to the JSON file"""
+        dict1 = {}
+        for key, value in self.__objects.items():
+            dict1[key] = value.to_dict()
         with open(self.__file_path, 'w') as fp:
-            json.dump(self.__objects, fp)
+            json.dump(dict1, fp)
 
     def reload(self):
         """deserializes the JSON file to __objects"""
+        from models.base_model import BaseModel
+        dict1 = {'BaseModel': BaseModel}
         try:
             with open(self.__file_path, 'r') as fp:
-                self.__objects = json.load(fp)
+                for key, value in json.load(fp).items():
+                    self.new(dict1[value['__class__']](**value))
         finally:
             return

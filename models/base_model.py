@@ -14,6 +14,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
         else:
             kwargs['created_at'] = datetime.fromisoformat(kwargs['created_at'])
             kwargs['updated_at'] = datetime.fromisoformat(kwargs['updated_at'])
@@ -21,16 +22,6 @@ class BaseModel:
                 if key == '__class__':
                     continue
                 setattr(self, key, value)
-        all_objs = storage.all()
-        x = 0
-        if all_objs != {}:
-            for key, val in all_objs.items():
-                if self.id == val['id']:
-                    x = 1
-            if x == 0:
-                storage.new(self)
-        else:
-            storage.new(self)
 
     def __str__(self):
         """Print/Return [<class name>] (<self.id>) <self.__dict__>"""
