@@ -1,5 +1,7 @@
 <h1> AirBnB </h1>
+
 ![HBnB Logo](./image/hbnb_logo.png)
+
 
 <h2> AirBnB clone - The console </h2>
 <h3> About the project </h3>
