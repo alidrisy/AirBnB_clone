@@ -23,22 +23,22 @@ class HBNBCommand(cmd.Cmd):
     __model_dict = {'BaseModel': BaseModel, 'User': User, 'Review': Review}
     d = {'Place': Place, 'State': State, 'Amenity': Amenity, 'City': City}
     __model_dict.update(d)
+
     def onecmd(self, line):
-        method_dict = {'all': self.do_all, 'count': self.count, "show": self.do_show, 'destroy': self.do_destroy, 'update': self.do_update}
+        """Run command in style <class name>.command"""
+        method_dict = {'all': self.do_all, 'count': self.count}
+        d = {"show": self.do_show, 'destroy': self.do_destroy}
+        method_dict.update(d)
         if line:
-            l = line.replace("(", ".")
-            l = l.replace(")", ".")
-            l = l.replace(", ", ".")
-            new = l.split(".")
+            x = line.replace("(", ".")
+            x = x.replace(")", ".")
+            x = x.replace(", ", ".")
+            new = x.split(".")
             if len(new) > 1:
                 if new[1] in method_dict.keys():
                     if new[2] != '':
-                        if new[3] != '':
-                            method_dict[new[1]](new[0]+' '+ str(new[2])+' '+str(new[3])+' '+str(new[4]))
-                            return
-                        else:
-                            method_dict[new[1]](new[0]+' '+ new[2])
-                            return
+                        method_dict[new[1]](new[0] + ' ' + new[2])
+                        return
                     else:
                         method_dict[new[1]](new[0])
                         return
