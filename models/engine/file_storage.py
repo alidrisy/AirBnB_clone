@@ -20,7 +20,7 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        key =str(obj.__class__.__name__)+"."+str(obj.id)
+        key = str(obj.__class__.__name__)+"."+str(obj.id)
         self.__objects[key] = obj
 
     def save(self):
@@ -34,7 +34,15 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         from models.base_model import BaseModel
-        dict1 = {'BaseModel': BaseModel}
+        from models.user import User
+        from models.review import Review
+        from models.place import Place
+        from models.state import State
+        from models.amenity import Amenity
+        from models.city import City
+        dict1 = {'BaseModel': BaseModel, 'User': User, 'Review': Review}
+        d = {'Place': Place, 'State': State, 'Amenity': Amenity, 'City': City}
+        dict1.update(d)
         try:
             with open(self.__file_path, 'r') as fp:
                 for key, value in json.load(fp).items():
