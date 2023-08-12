@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define FileStorage class"""
 import json
+from models.main import all_mod
 
 
 class FileStorage:
@@ -32,21 +33,10 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.review import Review
-        from models.place import Place
-        from models.state import State
-        from models.amenity import Amenity
-        from models.city import City
-
-        dict1 = {'BaseModel': BaseModel, 'User': User, 'Review': Review}
-        d = {'Place': Place, 'State': State, 'Amenity': Amenity, 'City': City}
-        dict1.update(d)
-
+        dic1 = all_mod()
         try:
             with open(self.__file_path, 'r') as fp:
                 for key, value in json.load(fp).items():
-                    self.new(dict1[value['__class__']](**value))
+                    self.new(dic1[value['__class__']](**value))
         finally:
             return
