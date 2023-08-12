@@ -38,5 +38,5 @@ class FileStorage:
             with open(self.__file_path, 'r') as fp:
                 for key, value in json.load(fp).items():
                     self.new(dic1[value['__class__']](**value))
-        finally:
-            return
+        except FileNotFoundError:
+            pass
