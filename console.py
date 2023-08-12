@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     def onecmd(self, line):
         """Run command in style <class name>.command"""
-        method_dict = {'all': self.do_all, 'count': self.count}
+        method_dict = {'all': self.do_all, 'count': self.do_count}
         d = {"show": self.do_show, 'destroy': self.do_destroy}
         method_dict.update(d)
         if line:
@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         r = super(HBNBCommand, self).onecmd(line)
         return r
 
-    def count(self, value):
+    def do_count(self, value):
         """Retrieve the number of instances of a class"""
         dct = storage.all()
         x = 0
