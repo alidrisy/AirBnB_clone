@@ -13,12 +13,3 @@ class City(BaseModel):
 
     state_id = ""
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Initilaize instances"""
-        if kwargs is None or len(kwargs) == 0:
-            super().__init__()
-            self.state_id = City.state_id
-            self.name = City.name
-        else:
-            super().__init__(**kwargs)

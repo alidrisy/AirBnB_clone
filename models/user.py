@@ -16,14 +16,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Initilaize instances"""
-        if kwargs is None or len(kwargs) == 0:
-            self.email = User.email
-            self.password = User.password
-            self.first_name = User.first_name
-            self.last_name = User.last_name
-            super().__init__()
-        else:
-            super().__init__(**kwargs)

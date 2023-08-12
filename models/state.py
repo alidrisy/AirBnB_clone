@@ -11,11 +11,3 @@ class State(BaseModel):
     """
 
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Initilaize instances"""
-        if kwargs is None or len(kwargs) == 0:
-            super().__init__()
-            self.name = State.name
-        else:
-            super().__init__(**kwargs)
