@@ -6,7 +6,6 @@ import json
 class FileStorage:
     """Serializes instances to a JSON file
     and deserializes JSON file to instances
-
     Args:
         __file_path (str): path to the JSON file
         __objects (dict): empty but will store all objects by <class name>.id
@@ -40,9 +39,11 @@ class FileStorage:
         from models.state import State
         from models.amenity import Amenity
         from models.city import City
+
         dict1 = {'BaseModel': BaseModel, 'User': User, 'Review': Review}
         d = {'Place': Place, 'State': State, 'Amenity': Amenity, 'City': City}
         dict1.update(d)
+
         try:
             with open(self.__file_path, 'r') as fp:
                 for key, value in json.load(fp).items():

@@ -9,6 +9,7 @@ from models.place import Place
 from models.state import State
 from models.amenity import Amenity
 from models.city import City
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,18 +31,11 @@ class HBNBCommand(cmd.Cmd):
         d = {"show": self.do_show, 'destroy': self.do_destroy}
         method_dict.update(d)
         if line:
-            x = line.replace("(", ".")
-            x = x.replace(")", ".")
-            x = x.replace(", ", ".")
-            new = x.split(".")
-            if len(new) > 1:
-                if new[1] in method_dict.keys():
-                    if new[2] != '':
-                        method_dict[new[1]](new[0] + ' ' + new[2])
-                        return
-                    else:
-                        method_dict[new[1]](new[0])
-                        return
+            if '.' in line and '(' in line and ')' in line:
+                cls = line.split('.')
+                cnd = cls[1].split('(')
+                args = cnd[1].split(')')
+                line = cnd[0] + ' ' + cls[0] + ' ' + args[0]
         r = super(HBNBCommand, self).onecmd(line)
         return r
 
@@ -173,7 +167,10 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"\n')
 adding or updating attribute.
         """
         if line:
-            my_list = pars(line)
+            a = ""
+            for argv in line.split(','):
+                a = a + argv
+            my_list= shlex.split(a)
             if my_list[0] not in self.__model_dict.keys():
                 print("** class doesn't exist **")
                 return
@@ -205,45 +202,9 @@ adding or updating attribute.
             print("** class name missing **")
 
     def emptyline(self):
-        """Do empty line + ENTER dosen’t execute anything"""
+        """dosen’t execute anything when empty line"""
         pass
 
-
-def pars(line):
-    """Convert a string into list
-
-    Args:
-        x (str): variable to collect char
-        c (str): var to handle double quote
-        i (str): var to count th loop run
-        my_list (list): list to handel the values
-    """
-
-    x = ""
-    c = ''
-    i = 0
-    my_list = []
-    for ret in line:
-        i += 1
-        if ret == '"' and c == '':
-            c = ret
-            continue
-        elif c == '"' and ret != '"':
-            x += ret
-            continue
-        elif c == '"' and ret == '"':
-            my_list.append(x)
-            c = ''
-            x = ''
-            continue
-        if ret == ' ':
-            my_list.append(x)
-            x = ""
-        else:
-            x += ret
-            if i == len(line):
-                my_list.append(x)
-    return my_list
 
 
 if __name__ == '__main__':
