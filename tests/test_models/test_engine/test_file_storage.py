@@ -5,6 +5,7 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.review import Review
+from models.engine.file_storage import FileStorage
 from models.place import Place
 from models.state import State
 from models.amenity import Amenity
@@ -23,6 +24,10 @@ class TestFileStorage(unittest.TestCase):
     def tearDownClass(cls):
         """Tear down the class test"""
         pass
+
+    def test_ClassInstance(self):
+        """ Check instance """
+        self.assertIsInstance(storage, FileStorage)
 
     def test_object_attr(self):
         """Test access to calss attr __object"""
