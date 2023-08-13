@@ -7,10 +7,7 @@ from models.main import all_mod
 class FileStorage:
     """Serializes instances to a JSON file
     and deserializes JSON file to instances
-    Args:
-        __file_path (str): path to the JSON file
-        __objects (dict): empty but will store all objects by <class name>.id
-        """
+    """
     __file_path = "file.json"
     __objects = {}
 

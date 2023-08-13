@@ -33,10 +33,20 @@ class HBNBCommand(cmd.Cmd):
         method_dict.update(d)
         if line:
             if '.' in line and '(' in line and ')' in line:
-                cls = line.split('.')
+                cls = line.split('.', 1)
                 cnd = cls[1].split('(')
                 args = cnd[1].split(')')
                 line = cnd[0] + ' ' + cls[0] + ' ' + args[0]
+            if "{" in line:
+                my_list = line.split(" ", 3)
+                my_list[2] = my_list[2].replace(",", "")
+                d = ast.literal_eval(my_list[3])
+                if type(d) is dict:
+                    for k, v in d.items():
+                        com = my_list[2] + ' ' + k + ' ' + str(v)
+                        line = my_list[0] + ' ' + my_list[1] + ' ' + com
+                        r = super(HBNBCommand, self).onecmd(line)
+                    return r
         r = super(HBNBCommand, self).onecmd(line)
         return r
 

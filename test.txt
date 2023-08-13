@@ -1,0 +1,3 @@
+Prints the string representation of an instance based on the class name and id.
+Usage: show <class name> <id>
+
