@@ -1,0 +1,63 @@
+.container {
+	max-width: 1000px;
+	margin: 100px 0px;
+	position: relative;
+}
+  
+.filters {
+	background-color: white;
+	height: 70px;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+}
+
+button {
+	border: none;
+	font-size: 18px;
+	background: #FF5A5F;
+	color: #FFFFFF;
+	height: 48px;
+	width: 20%;
+	border-radius: 4px;
+	float: right;
+	margin-right: 30px;
+	margin-top: 11px;
+}
+button:hover {
+	background: #F73A5F;
+}
+.locations {
+	width: 25%;
+	border-right: 1px solid #DDDDDD;
+	position: absolute;
+	top: 0%;
+	height: 100%;
+	margin-top: 0px;
+}
+.locations h3 {
+	font-weight: 600;
+	margin-left: 15%;
+}
+
+h4 {
+	font-weight: 400;
+	font-size: 14px;
+	margin-left: 15%;
+	margin-top: -10px;
+}
+
+.amenities {
+	height: 100%;
+	width: 25%;
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	left: 25%;
+}
+
+
+.amenities h3 {
+	font-weight: 600;
+	margin-left: 15%;
+}

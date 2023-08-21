@@ -1,0 +1,12 @@
+header {
+	background-color: white;
+	background-image: url("../images/air.png");
+	background-position: left center;
+	background-repeat: no-repeat;
+	height: 70px;
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+	position: absolute;
+	right: 0px;
+	top: 0;
+}

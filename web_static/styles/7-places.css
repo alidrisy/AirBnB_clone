@@ -1,0 +1,22 @@
+.place {
+	max-width: 1000px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.place h1 {
+	text-align: left;
+}
+
+.place article {
+	display: inline-block;
+	width: 390px;
+	padding: 20px;
+	margin: 20px;
+	border: 1px solid #FF5A5F;
+	border-radius: 4px;
+}
+
+.place article h2 {
+	font-size: 30px;
+}
